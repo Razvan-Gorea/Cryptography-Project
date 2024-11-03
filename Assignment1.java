@@ -115,6 +115,7 @@ class Assignment1 {
         return value.toString(16);
     }
 
+    //method that takes the randomly produced IV value and writes it to its specific file
     public static void write_to_IV_file(String iv_file, String hex_iv_value) {
         try (FileWriter writer = new FileWriter(iv_file)) {
             writer.write(hex_iv_value);
@@ -124,6 +125,7 @@ class Assignment1 {
         }
     }
 
+    //method that takes the DH value and writes it to its specific file
     public static void write_to_DH_file(String dh_file, String hex_public_value) {
         try (FileWriter writer = new FileWriter(dh_file)) {
             writer.write(hex_public_value);
@@ -133,6 +135,7 @@ class Assignment1 {
         }
     }
 
+    //method that adds padding
     public static byte[] padding(File input_file) throws IOException {
         if (!input_file.exists()) {
             throw new IOException("File isn't discoverable: " + input_file.getAbsolutePath());
@@ -172,7 +175,7 @@ class Assignment1 {
                     file_as_bytes[startOfLastBlock] = (byte) 0x80; // 0x80 is equivalent to 10000000 in binary
                 }
 
-                // Every other byte in the last block is setted to hexadecimal zero (0x00)
+                // Every other byte in the last block is set to hexadecimal zero (0x00)
                 for (int i = startOfLastBlock + 1; i < file_as_bytes.length; i++) {
                     file_as_bytes[i] = (byte) 0x00;
                 }
